@@ -1,7 +1,5 @@
 package remove_element
 
-import "fmt"
-
 // removeElement removes all instances of that value in-place and return the new length.
 func removeElement(nums []int, val int) int {
 	var left, right int
@@ -20,8 +18,6 @@ func removeElement(nums []int, val int) int {
 		nums[left], nums[right] = nums[right], nums[left]
 		left++
 	}
-
-	fmt.Printf("nums %v\n", nums)
 
 	return left
 }
