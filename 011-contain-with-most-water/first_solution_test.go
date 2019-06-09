@@ -1,4 +1,4 @@
-package remove_duplicates_from_sorted_array
+package container_with_most_water
 
 import "testing"
 

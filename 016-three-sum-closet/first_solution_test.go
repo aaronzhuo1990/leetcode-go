@@ -1,4 +1,4 @@
-package remove_duplicates_from_sorted_array
+package three_sum_closet
 
 import "testing"
 import "github.com/stretchr/testify/assert"

@@ -1,4 +1,4 @@
-package remove_duplicates_from_sorted_array
+package three_sum
 
 import "sort"
 

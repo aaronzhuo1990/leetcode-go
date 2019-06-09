@@ -1,4 +1,4 @@
-package remove_element
+package search_insert_position
 
 import "testing"
 
