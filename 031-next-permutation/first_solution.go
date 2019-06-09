@@ -8,22 +8,16 @@ func nextPermutation(nums []int) {
 		left--
 	}
 
-	// Keep the element which needs to swap position later.
-	swapIndex := left
-	swapVal := nums[swapIndex]
-
 	// Reverse the order from left to right
-	left++
-	reverse(nums, left, right)
+	reverse(nums, left+1, right)
+
+	if left == -1 {
+		return
+	}
 
 	// Swap the value
-	// TODO: This can be done by binary search.
-	for ; left < right; left++ {
-		if swapVal < nums[left] {
-			nums[swapIndex], nums[left] = nums[left], nums[swapIndex]
-			break
-		}
-	}
+	swapIndex := search(nums, left+1, nums[left])
+	nums[left], nums[swapIndex] = nums[swapIndex], nums[left]
 }
 
 func reverse(nums []int, left, right int) {
@@ -32,4 +26,22 @@ func reverse(nums []int, left, right int) {
 		left++
 		right--
 	}
+}
+
+func search(nums []int, left, target int) int {
+	right := len(nums) - 1
+	mid := 0
+
+	for left+1 < right {
+		mid = (left + right) / 2
+
+		if target < nums[mid] {
+			right = mid
+		} else {
+			left = mid
+		}
+
+	}
+
+	return right
 }
