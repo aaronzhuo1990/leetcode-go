@@ -3,7 +3,7 @@ package remove_duplicates_from_sorted_array
 import "testing"
 import "github.com/stretchr/testify/assert"
 
-func TestRemoveDuplicatesFromSortedArray(t *testing.T) {
+func TestThreeSum(t *testing.T) {
 	ast := assert.New(t)
 
 	cases := []struct {

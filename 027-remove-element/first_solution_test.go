@@ -2,7 +2,7 @@ package remove_element
 
 import "testing"
 
-func TestRemoveDuplicatesFromSortedArray(t *testing.T) {
+func TestRemoveElement(t *testing.T) {
 	cases := []struct {
 		nums []int
 		val  int
