@@ -1,5 +1,7 @@
 package next_permutation
 
+import "fmt"
+
 func nextPermutation(nums []int) {
 	right := len(nums) - 1
 	left := right - 1
@@ -30,10 +32,10 @@ func reverse(nums []int, left, right int) {
 
 func search(nums []int, left, target int) int {
 	right := len(nums) - 1
-	mid := 0
 
 	for left+1 < right {
-		mid = (left + right) / 2
+		fmt.Printf("left %d, right %d\n", left, right)
+		mid := (left + right) / 2
 
 		if target < nums[mid] {
 			right = mid
@@ -43,5 +45,6 @@ func search(nums []int, left, target int) int {
 
 	}
 
+	// The last `right` points to the first element which vale is greater than target.
 	return right
 }
