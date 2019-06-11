@@ -1,4 +1,4 @@
-package search_rotated_sorted_array
+package main
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -11,28 +11,22 @@ func TestSearchInsert(t *testing.T) {
 	cases := []struct {
 		nums   []int
 		target int
-		answer int
+		answer []int
 	}{
-
 		{
-			nums:   []int{4, 5, 6, 7, 0, 1, 2},
-			target: 6,
-			answer: 2,
-		},
-		{
-			nums:   []int{4, 5, 6, 7, 0, 1, 2},
-			target: 1,
-			answer: 5,
-		},
-		{
-			nums:   []int{4, 5, 6, 7, 0, 1, 2},
+			nums:   []int{5, 7, 7, 8, 8, 10},
 			target: 8,
-			answer: -1,
+			answer: []int{3, 4},
+		},
+		{
+			nums:   []int{5, 7, 7, 8, 8, 10},
+			target: 11,
+			answer: []int{-1, -1},
 		},
 	}
 
 	for i, c := range cases {
-		result := searchInRotatedSortedArray(c.nums, c.target)
+		result := findFirstAndLastTargetPosition(c.nums, c.target)
 		ast.Equal(c.answer, result, "case %d, input: %v, target: %d\n ", i, c.nums, c.target)
 	}
 
