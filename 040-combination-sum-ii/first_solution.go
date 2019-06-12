@@ -6,15 +6,15 @@ import (
 )
 
 func main() {
-	cans := []int{2, 3, 6, 7}
-	target := 7
+	cans := []int{10, 1, 2, 7, 6, 1, 5}
+	target := 8
 
-	result := combinationSum(cans, target)
+	result := combinationUniqueSum(cans, target)
 
 	fmt.Printf("result %#v\n", result)
 }
 
-func combinationSum(candidates []int, target int) *[][]int {
+func combinationUniqueSum(candidates []int, target int) *[][]int {
 
 	sort.Ints(candidates)
 
@@ -27,6 +27,7 @@ func combinationSum(candidates []int, target int) *[][]int {
 }
 
 func calcCombinationSum(candidates []int, solution []int, target int, result *[][]int) {
+
 	// It means the sum of the elements in `solution` equals to given target.
 	if target == 0 {
 		*result = append(*result, solution)
@@ -37,11 +38,18 @@ func calcCombinationSum(candidates []int, solution []int, target int, result *[]
 		return
 	}
 
-	newSolution := append(solution, candidates[0])
-
 	// Put the first element of candidates into the new solution and keep calculating
-	calcCombinationSum(candidates, newSolution, target-candidates[0], result)
+	newSolution := append(solution, candidates[0])
+	calcCombinationSum(candidates[1:], newSolution, target-candidates[0], result)
 
 	// Keeping finding the solution from the rest.
-	calcCombinationSum(candidates[1:], solution, target, result)
+	calcCombinationSum(next(candidates), solution, target, result)
+}
+
+func next(candidates []int) []int {
+	i := 0
+	for i+1 < len(candidates) && candidates[i] == candidates[i+1] {
+		i++
+	}
+	return candidates[i+1:]
 }
