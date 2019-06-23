@@ -2,4 +2,6 @@
 
 Leetcode Problems Solved in Golang
 
-Test
+# Sequence
+- Array
+- Linked List
