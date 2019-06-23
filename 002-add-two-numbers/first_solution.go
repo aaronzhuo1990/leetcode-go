@@ -10,7 +10,7 @@ func main() {
 	l2 := makeListNode([]int{6, 6, 6})
 
 	result := addTwoNumbers(l1, l2)
-	fmt.Printf("result:")
+	fmt.Printf("result:") // Should be 8 -> 0 -> 0 -> 1
 	for result != nil {
 		fmt.Printf("%d ", result.Val)
 		result = result.Next
