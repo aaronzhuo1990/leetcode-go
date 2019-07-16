@@ -12,3 +12,6 @@ Leetcode Problems Solved in Golang
 - Linked List
     - Loop
     - Recursion
+    
+- Stack
+    - First in last out
