@@ -114,8 +114,8 @@ func (s *calculator) parseDelimiters(numbers string) (map[string]bool, string) {
 				}
 
 				if char == rune('\n') {
-					index = left + 1 // Skip the `\n`.
-					break            // No more custom delimiter.
+					index = left + 2 + 1 // Skip the part from `\\' to '\n`.
+					break                // No more custom delimiter.
 				}
 
 			default:

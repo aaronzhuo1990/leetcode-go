@@ -1,6 +1,7 @@
 package string
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -66,8 +67,8 @@ func TestSumCalculator_Add(t *testing.T) {
 		},
 		{
 			description:    "Test unicode delimiters.",
-			numbersStr:     "//$,@,你好\n1$你好2@3#4", // '你好' means 'hello' in Chinese
-			expectedResult: 0,
+			numbersStr:     "//$,@,你好\n1$你好2@3@4", // '你好' means 'hello' in Chinese
+			expectedResult: 10,
 			expectErr:      false,
 		},
 	}
@@ -82,10 +83,11 @@ func TestSumCalculator_Add(t *testing.T) {
 				t.Logf("expected error: %s", err.Error())
 			}
 		} else {
-			t.Logf("expected result %d, actual result %d\n", c.expectedResult, result)
+			inputStr := strings.Replace(c.numbersStr, "\n", "\\n", -1)
+			t.Logf("input string: \"%s\" \texpected result %d, actual result %d\n", inputStr, c.expectedResult, result)
 			ast.Equal(c.expectedResult, result)
-			t.Logf("##################################################\n")
 		}
+		t.Logf("##################################################\n")
 	}
 }
 
