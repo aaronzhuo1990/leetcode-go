@@ -2,8 +2,8 @@
 
 This package exposes the following interface:
 
-- Calculator: This interface contains the method for performing math for the numbers in a string. Currently it has the following methods:
- - Add: Sum all the numbers in a string and return it.
+* Calculator: This interface contains the method for performing math for the numbers in a string. Currently it has the following methods:
+  - Add: Sum all the numbers in a string and return it.
 
 ## Testing the Package
 
