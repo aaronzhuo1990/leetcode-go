@@ -18,7 +18,33 @@ go test ./string/... -v
 
 ## Using the Package
 
-You can execute the following commands to run the example of this package:
+The following example shows how to use this package:
+
+```
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/azhuox/leetcode-go/interview/7shifts/string"
+)
+
+func main() {
+	strCalculator := string.NewCalculator()
+	inputStr := "1,2,3,4"
+
+	result, err := strCalculator.Add(inputStr)
+	if err != nil {
+		log.Fatalf("Error summing all the numbers in the string %s, err: %s", inputStr, err.Error())
+	}
+
+	fmt.Printf("The sum of all the numbers in the string [%s] is %d\n", inputStr, result)
+
+}
+```
+
+You can also run the following the commands to run the above example:
 
 ```
 go get github.com/azhuox/leetcode-go
