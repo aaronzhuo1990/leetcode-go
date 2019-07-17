@@ -6,26 +6,25 @@ import (
 	"strings"
 )
 
-// SumCalculator is the calculator for calculating the sum of the numbers in a string.
-type SumCalculator interface {
-	Add(numbers string) (int, error)
-}
-
-// sumCalculator is the implementation of the `SumCalculator` interface.
-type sumCalculator struct {
-}
-
-func NewSumCalculator() SumCalculator {
-	return &sumCalculator{}
-}
-
-// Add calculates the sum of the numbers in the given string.
-func (s *sumCalculator) Add(numbers string) (int, error) {
+// Add - calculate the sum of the numbers in the given string.
+//	@params:
+//		numbers: The string that contains both numbers and custom delimiters.
+//	@return:
+//		int: The sum of the numbers in the given string.
+//		error: An error which indicates something goes wrong.
+func (s *calculator) Add(numbers string) (int, error) {
 	delimiters, leftStr := s.parseDelimiters(numbers)
 	return s.recursiveAdd(leftStr, delimiters, 0)
 }
 
-func (s *sumCalculator) recursiveAdd(numbers string, delimiters map[string]bool, sum int) (int, error) {
+// recursiveAdd - add all the numbers in the given string recursively.
+//	@params:
+//		numbers: The string that contains both numbers and custom delimiters.
+// 		delimiters: All the delimiters used in the given string.
+//	@return:
+//		int: The sum of the numbers in the given string.
+//		error: An error which indicates something goes wrong.
+func (s *calculator) recursiveAdd(numbers string, delimiters map[string]bool, sum int) (int, error) {
 	numStr := make([]byte, 0, 10) // Declare a byte slice which init ial capacity is 10.
 
 	// Basic line
@@ -87,14 +86,14 @@ func (s *sumCalculator) recursiveAdd(numbers string, delimiters map[string]bool,
 	return sum, nil
 }
 
-// parseDelimiters parses delimiters from the given string
+// parseDelimiters - parse delimiters from the given string
 //	@params:
 //		numbers: the string that contains both numbers and custom delimiters
 //	@return:
 //		map[string]bool: A string-bool pair which represents all the delimiters
 //		string: a part of the input string without customer delimiters
 //	TODO: handle edge cases.
-func (s *sumCalculator) parseDelimiters(numbers string) (map[string]bool, string) {
+func (s *calculator) parseDelimiters(numbers string) (map[string]bool, string) {
 	// The following delimiters are default delimiters.
 	allDelimiters := map[string]bool{
 		"\n": true,

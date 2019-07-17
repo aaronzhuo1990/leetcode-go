@@ -8,7 +8,7 @@ import (
 
 func TestSumCalculator_Add(t *testing.T) {
 	ast := assert.New(t)
-	stringSumCalculator := NewSumCalculator()
+	strCalculator := NewCalculator()
 
 	testCases := []struct {
 		description    string
@@ -20,21 +20,25 @@ func TestSumCalculator_Add(t *testing.T) {
 			description:    "Test empty string.",
 			numbersStr:     "",
 			expectedResult: 0,
+			expectErr:      false,
 		},
 		{
 			description:    "Test the `,` delimiter.",
 			numbersStr:     "1,2,5",
 			expectedResult: 8,
+			expectErr:      false,
 		},
 		{
-			description:    "Test the new line` delimiter.",
+			description:    "Test the new line delimiter.",
 			numbersStr:     "1,\n2,4",
 			expectedResult: 7,
+			expectErr:      false,
 		},
 		{
 			description:    "Test a custom delimiter.",
 			numbersStr:     "//$\n1$2$3",
 			expectedResult: 6,
+			expectErr:      false,
 		},
 		{
 			description:    "Test a negative number.",
@@ -44,13 +48,15 @@ func TestSumCalculator_Add(t *testing.T) {
 		},
 		{
 			description:    "Test a large number.",
-			numbersStr:     "//$\n1$2,1001",
+			numbersStr:     "//$\n1$2,10001",
 			expectedResult: 3,
+			expectErr:      false,
 		},
 		{
 			description:    "Test multiple customer delimiters.",
 			numbersStr:     "//$,@,#\n1$2@3#4",
 			expectedResult: 10,
+			expectErr:      false,
 		},
 		{
 			description:    "Test invalid delimiters.",
@@ -58,10 +64,16 @@ func TestSumCalculator_Add(t *testing.T) {
 			expectedResult: 0,
 			expectErr:      true,
 		},
+		{
+			description:    "Test unicode delimiters.",
+			numbersStr:     "//$,@,你好\n1$你好2@3#4", // '你好' means 'hello' in Chinese
+			expectedResult: 0,
+			expectErr:      false,
+		},
 	}
 
 	for _, c := range testCases {
-		result, err := stringSumCalculator.Add(c.numbersStr)
+		result, err := strCalculator.Add(c.numbersStr)
 		t.Logf("Test case: %s\n", c.description)
 		if err != nil {
 			if !c.expectErr {
