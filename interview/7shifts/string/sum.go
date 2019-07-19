@@ -1,7 +1,6 @@
 package string
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -41,7 +40,7 @@ func (s *calculator) recursiveAdd(numbers string, delimiters map[string]bool, su
 		}
 		num, err := strconv.Atoi(string(numStr))
 		if err != nil {
-			return 0, fmt.Errorf("error converting string %s to integer, err: %s", string(numStr), err.Error())
+			return 0, newError(ErrTypeInternalServerErr, "error converting string %s to integer, err: %s", string(numStr), err.Error())
 		}
 		if num <= 1000 {
 			// Only sum the number which is not large than 1000
@@ -61,12 +60,12 @@ func (s *calculator) recursiveAdd(numbers string, delimiters map[string]bool, su
 				for ; numIndex < len(numbers) && '0' <= numbers[numIndex] && numbers[numIndex] <= '9'; numIndex++ {
 					numStr = append(numStr, numbers[numIndex])
 				}
-				return 0, fmt.Errorf("negatives not allowed, negative number: [-%s]", string(numStr))
+				return 0, newError(ErrTypeBadRequest, "negatives not allowed, negative number: [-%s]", string(numStr))
 
 			case '0' <= char && char <= '9':
 				// Number character found
 				if len(delimiter) != 0 && !delimiters[string(delimiter)] {
-					return 0, fmt.Errorf("invalid delimiter [%s] found", string(delimiter))
+					return 0, newError(ErrTypeBadRequest, "invalid delimiter [%s] found", string(delimiter))
 				} else {
 					return s.recursiveAdd(numbers[index:], delimiters, sum) // Handle the rest of the input string.
 				}
