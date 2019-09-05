@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/azhuox/leetcode-go/interview/7shifts/string"
+	"github.com/azhuox/leetcode-go/interview/strcalculator/string"
 )
 
 func main() {
